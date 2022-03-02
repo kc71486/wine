@@ -10,9 +10,8 @@
 		<script type="text/javascript" src="./main.js"></script>
 		<div id="topmargin"></div>
 		<div id="hangar">hangar24</div>
-		
 		<div id="munuword" class="sideword" onclick="scrollMenu(true)">= menu</div>
-		<div class="side_area menu">
+		<div id="menu" class="side_area">
 			<div class="scrolled_title"><u>menu</u></div>
 			<a href="#" class="scrolled_content">about</a>
 			<a href="#" class="scrolled_content">product</a>
@@ -20,11 +19,12 @@
 			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)"></image>
 		</div>
 		<div id="cartword" class="sideword" onclick="scrollCart(true)">cart</div>
-		<div class="side_area cart">
+		<div id="cart" class="side_area">
 			<div class="scrolled_title"><u>cart</u></div>
 			<div class="scrolled_content">your cart is empty</div>
 			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)"></image>
 		</div>
+		<div id="screen_mask" onclick="clickmask()"></div>
 		<div>
 			<div class="arrow_left">
 				<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow"></image>
