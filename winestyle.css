@@ -27,46 +27,25 @@
 	width: 100%;
 	top: 20%;
 }
+.sideword {
+	max-width: 300px;
+	max-height: 50px;
+	width: 20%;
+    height: 10%;
+	color: #000000;
+}
 #munuword {
 	position: absolute;
 	top: 10%;
 	right: 85%;
-	max-width: 300px;
-	max-height: 50px;
-	width: 20%;
-    height: 10%;
 }
-.menu {
-	position: absolute;
-	left: 0%;
-	width: 300px;
-	height: 100%;
-	padding: 50px 0;
-	background-color: #202020;
-	opacity: 1;
-	display: flex;
-	flex-direction: column;
-	transform: translateX(-100%);
-	transition: .3s;
-	z-index: 1;
-}
-.menu_title {
-	color: #c7c0a0;
-	padding: 30px 0;
-}
-
 #cartword {
 	position: absolute;
 	top: 10%;
 	left: 85%;
-	max-width: 300px;
-	max-height: 50px;
-	width: 20%;
-    height: 10%;
 }
-.cart{
-	position: absolute;
-	right: 0%;
+
+.side_area {
 	width: 300px;
 	height: 100%;
 	padding: 50px 0;
@@ -74,13 +53,42 @@
 	opacity: 1;
 	display: flex;
 	flex-direction: column;
-	transform: translateX(100%);
-	transition: .3s;
 	z-index: 1;
 }
-.cart_title {
+.menu {
+	position: absolute;
+	left: 0%;
+	transform: translateX(-100%);
+	transition: .3s;
+}
+.cart{
+	position: absolute;
+	right: 0%;
+	transform: translateX(100%);
+	transition: .3s;
+}
+
+.scrolled_title {
 	color: #c7c0a0;
 	padding: 30px 0;
+}
+.scrolled_content {
+	color: #ffffff;
+}
+
+.cross {
+	width: 40px;
+    height: 40px;
+}
+#menu_cross {
+	position: absolute;
+	left: 10%;
+	top: 5%;
+}
+#cart_cross {
+	position: absolute;
+	right: 10%;
+	top: 5%;
 }
 
 .arrow_left {
