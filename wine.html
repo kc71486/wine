@@ -11,16 +11,19 @@
 		<div id="topmargin"></div>
 		<div id="hangar">hangar24</div>
 		
-		<div id="munuword" onclick="scrollMenu(true)">menu</div>
-		<div class="menu">
-			<div class="menu_title"><u>menu</u></div>
-			<a href="#">about</a>
-			<a href="#">product</a>
-			<a href="#">contact</a>
+		<div id="munuword" class="sideword" onclick="scrollMenu(true)">menu</div>
+		<div class="side_area menu">
+			<div class="scrolled_title"><u>menu</u></div>
+			<a href="#" class="scrolled_content">about</a>
+			<a href="#" class="scrolled_content">product</a>
+			<a href="#" class="scrolled_content">contact</a>
+			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)"></image>
 		</div>
-		<div id="cartword" onclick="scrollCart(true)">cart</div>
-		<div class="cart">
-			<div class="cart_title"><u>cart</u></div>
+		<div id="cartword" class="sideword" onclick="scrollCart(true)">cart</div>
+		<div class="side_area cart">
+			<div class="scrolled_title"><u>cart</u></div>
+			<div class="scrolled_content">your cart is empty</div>
+			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)"></image>
 		</div>
 		<div>
 			<div class="arrow_left">
