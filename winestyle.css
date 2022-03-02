@@ -4,6 +4,9 @@
 }
 
 .body {
+	font-family: "grunge5", Georgia;
+	font-size: 30px;
+	text-align: center;
 	background-color: #ffffff;
 	margin: 0 0 0 0;
 	overflow: hidden;
@@ -17,64 +20,145 @@
 	background-color: #f0b048;
 }
 
-.words {
-	margin-top: 25px;
-	font-family: "grunge5", Georgia;
-	font-size: 30px;
-	text-align: center;
-}
-
 #hangar {
 	font-size: 72px;
 	color: #f0b048;
 	position: absolute;
 	width: 100%;
 	top: 20%;
+}
+#munuword {
+	position: absolute;
+	top: 10%;
+	right: 85%;
+	max-width: 300px;
+	max-height: 50px;
+	width: 20%;
+    height: 10%;
+}
+.menu {
+	position: absolute;
+	left: 0%;
+	width: 300px;
+	height: 100%;
+	padding: 50px 0;
+	background-color: #202020;
+	opacity: 1;
+	display: flex;
+	flex-direction: column;
+	transform: translateX(-100%);
+	transition: .3s;
 	z-index: 1;
 }
+.menu_title {
+	color: #c7c0a0;
+	padding: 30px 0;
+}
 
-#menu {
+#cartword {
 	position: absolute;
 	top: 10%;
-	right: 80%;
+	left: 85%;
 	max-width: 300px;
 	max-height: 50px;
 	width: 20%;
     height: 10%;
 }
-
-#cart {
+.cart{
 	position: absolute;
-	top: 10%;
-	left: 80%;
-	max-width: 300px;
-	max-height: 50px;
-	width: 20%;
-    height: 10%;
+	right: 0%;
+	width: 300px;
+	height: 100%;
+	padding: 50px 0;
+	background-color: #202020;
+	opacity: 1;
+	display: flex;
+	flex-direction: column;
+	transform: translateX(100%);
+	transition: .3s;
+	z-index: 1;
+}
+.cart_title {
+	color: #c7c0a0;
+	padding: 30px 0;
 }
 
-#arrow_left {
+.arrow_left {
 	position: absolute;
 	top: 55%;
 	right: 87%;
 	width: 80px;
     height: 40px;
 	transform: rotate(180deg);
-	z-index: 1;
+	cursor: pointer;
 }
-#arrow_right {
+#arrow_left_black {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition: .5s;
+}
+#arrow_left_yellow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: .5s;
+}
+.arrow_left:hover #arrow_left_black {
+  opacity: 0;
+}
+.arrow_left:hover #arrow_left_yellow {
+  opacity: 1;
+}
+
+.arrow_right {
 	position: absolute;
 	top: 55%;
 	left: 87%;
 	width: 80px;
     height: 40px;
 	transform: rotate(10deg);
-	z-index: 1;
+	cursor: pointer;
 }
-#beer {
+#arrow_right_black {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition: .5s;
+}
+#arrow_right_yellow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: .5s;
+}
+.arrow_right:hover #arrow_right_black {
+  opacity: 0;
+}
+.arrow_right:hover #arrow_right_yellow {
+  opacity: 1;
+}
+
+#wine {
+	/*left +15%, rotate -10deg*/
 	position: absolute;
 	top: 40%;
 	left: -20%;
 	width: 140%;
     height: 140%;
+	transform: rotate(0deg);
+	transition: .5s;
+	z-index: -1;
 }
