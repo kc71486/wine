@@ -2,7 +2,7 @@ var currentBeer = 0;
 const rotatedeg = [-48, -23, -11, 0, 11, 23, 48];
 
 function rotateWine(left) {
-	wine = document.querySelector("#wine").style;
+	wine = document.getElementById("wine").style;
 	if(left) {
 		if(currentBeer >= 3)
 			return;
@@ -21,22 +21,36 @@ function rotateWine(left) {
 }
 
 function scrollMenu(scrollin) {
-	menu = document.querySelector(".menu").style;
+	menu = document.getElementById("menu").style;
+	screenmask = document.getElementById("screen_mask").style;
 	if(scrollin) {
 		trans = "translateX(0%)";
+		screenmask.opacity = "0.5";
+		screenmask.zIndex = "1";
 	}
 	else {
 		trans = "translateX(-100%)";
+		screenmask.opacity = "0";
+		screenmask.zIndex = "-2";
 	}
 	menu.transform = trans;
 }
 function scrollCart(scrollin) {
-	cart = document.querySelector(".cart").style;
+	cart = document.getElementById("cart").style;
+	screenmask = document.getElementById("screen_mask").style;
 	if(scrollin) {
 		trans = "translateX(0%)";
+		screenmask.opacity = "0.5";
+		screenmask.zIndex = "1";
 	}
 	else {
 		trans = "translateX(100%)";
+		screenmask.opacity = "0";
+		screenmask.zIndex = "-2";
 	}
 	cart.transform = trans;
+}
+function clickmask() {
+	scrollMenu(false);
+	scrollCart(false);
 }
