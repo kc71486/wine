@@ -7,18 +7,33 @@
 		<title>wine</title>
 	</head>
 	<body class="body">
+		<script type="text/javascript" src="main.js"></script>
 		<div id="topmargin"></div>
-		<div class="words">
-			<div id="hangar">hangar24</div>
-			<div id="menu">= menu</div>
-			<div id="cart">cart</div>
+		<div id="hangar">hangar24</div>
+		
+		<div id="munuword" onclick="scrollMenu(true)">menu</div>
+		<div class="menu">
+			<div class="menu_title"><u>menu</u></div>
+			<a href="#">about</a>
+			<a href="#">product</a>
+			<a href="#">contact</a>
+		</div>
+		<div id="cartword" onclick="scrollCart(true)">cart</div>
+		<div class="cart">
+			<div class="cart_title"><u>cart</u></div>
 		</div>
 		<div>
-			<image id="arrow_left" src="./resource/arrow-black.png" alt="left arrow"></image>
-			<image id="arrow_right" src="./resource/arrow-black.png" alt="right arrow"></image>
+			<div class="arrow_left">
+				<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow"></image>
+				<image id="arrow_left_yellow" src="./resource/arrow-yellow.png" alt="left arrow on hover" onclick="rotateWine(true)"></image>
+			</div>
+			<div class="arrow_right">
+				<image id="arrow_right_black" src="./resource/arrow-black.png" alt="right arrow"></image>
+				<image id="arrow_right_yellow" src="./resource/arrow-yellow.png" alt="right arrow on hover" onclick="rotateWine(false)"></image>
+			</div>
 		</div>
 		<div>
-			<image id="beer" src="./resource/beer.jpg" alt="beer"></image>
+			<image id="wine" src="./resource/beer.jpg" alt="beer"></image>
 		</div>
 	</body>
 </html>
