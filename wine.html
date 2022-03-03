@@ -9,13 +9,13 @@
 	<body class="body">
 		<script type="text/javascript" src="./main.js"></script>
 		<div id="topmargin"></div>
-		<div id="hangar">hangar24</div>
+		<div id="hangar" >hangar24</div>
 		<div id="munuword" class="sideword" onclick="scrollMenu(true)">= menu</div>
 		<div id="menu" class="side_area">
 			<div class="scrolled_title"><u>menu</u></div>
-			<a href="#" class="scrolled_content">about</a>
-			<a href="#" class="scrolled_content">product</a>
-			<a href="#" class="scrolled_content">contact</a>
+			<a href="#" class="scrolled_content" title="about this site">about</a>
+			<a href="#" class="scrolled_content" title="all products">product</a>
+			<a href="#" class="scrolled_content" title="contact us">contact</a>
 			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)"></image>
 		</div>
 		<div id="cartword" class="sideword" onclick="scrollCart(true)">cart</div>
@@ -37,6 +37,7 @@
 		</div>
 		<div>
 			<image id="wine" src="./resource/beer.jpg" alt="beer"></image>
+			<div id="choose_area"></div>
 		</div>
 	</body>
 </html>
