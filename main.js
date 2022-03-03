@@ -1,5 +1,7 @@
 var currentBeer = 0;
 const rotatedeg = [-48, -23, -11, 0, 11, 23, 48];
+const transxdist = [-32, -24, -11, 0, 11, 24, 32];
+const transydist = [-40, -12, -3, 0, -3, -12, -40];
 
 function rotateWine(left) {
 	wine = document.getElementById("wine").style;
@@ -15,8 +17,8 @@ function rotateWine(left) {
 	}
 	
 	rot = rotatedeg[currentBeer+3];
-	tranx = currentBeer*10;
-	trany = currentBeer*currentBeer*-3;
+	tranx = transxdist[currentBeer+3];
+	trany = transydist[currentBeer+3];
 	wine.transform = 'rotate(' + rot + 'deg) translateX(' + tranx +'%) translateY(' + trany +'%)';
 }
 
