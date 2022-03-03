@@ -4,7 +4,7 @@
 }
 
 .body {
-	font-family: "grunge5", Georgia;
+	font-family: "grunge5", Georgia, sans-serif;
 	font-size: 30px;
 	text-align: center;
 	background-color: #ffffff;
@@ -179,7 +179,6 @@
 }
 
 #wine {
-	/*left +15%, rotate -10deg*/
 	position: absolute;
 	top: 40%;
 	left: -20%;
@@ -188,4 +187,11 @@
 	transform: rotate(0deg);
 	transition: .5s;
 	z-index: -1;
+}
+#choose_area {
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	width: 20%;
+    height: 60%;
 }
