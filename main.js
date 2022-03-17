@@ -12,22 +12,34 @@ function rotateBeer(left) {
 	updateBeer();
 }
 function updateBeer() {
+	//lag friendly 2 fps
+	if(Math.abs(beers.currentBeer - beers.currentPosFrame) < 0.05) {
+		beers.currentPosFrame = beers.currentBeer;
+	}
+	else if(beers.currentBeer > beers.currentPosFrame)
+		beers.currentPosFrame += 0.5;
+	else if(beers.currentBeer < beers.currentPosFrame)
+		beers.currentPosFrame -= 0.5;
 	for(let i=0; i<7; i++) {
-		let pos = i - beers.currentBeer;
+		let pos = i - beers.currentPosFrame;
 		let rot = 10 * pos;
 		let tranx = 140 * pos;
 		let trany = 8 * pos*pos;
 		//translate xy before rotate or it will screw the positioning
-		beers.style[i].transform = 'translateX(' + tranx +'%) translateY(' + trany +'%) rotate(' + rot + 'deg) ';
+		beers.style[i].transform = "translateX(" + tranx +"%) translateY(" + trany +"%) rotate(" + rot + "deg) ";
 		if(pos>=-1 && pos<=1) {
-			beers.id[i].classList.add('beercenter');
-			beers.id[i].classList.remove('beeroffcenter');
+			beers.id[i].classList.add("beercenter");
+			beers.id[i].classList.remove("beeroffcenter");
 		}
 		else {
-			beers.id[i].classList.add('beeroffcenter');
-			beers.id[i].classList.remove('beercenter');
+			beers.id[i].classList.add("beeroffcenter");
+			beers.id[i].classList.remove("beercenter");
 		}
 	}
+	if(beers.currentBeer == beers.currentPosFrame)
+		return;
+	else
+		setTimeout(updateBeer, 250);
 }
 
 function scrollMenu(scrollin) {
@@ -36,7 +48,7 @@ function scrollMenu(scrollin) {
 	if(scrollin) {
 		trans = "translateX(0%)";
 		screenmask.opacity = "0.5";
-		screenmask.zIndex = "1";
+		screenmask.zIndex = "5";
 	}
 	else {
 		trans = "translateX(-100%)";
@@ -90,13 +102,30 @@ function clickmask() {
 function clickbeer(event) {
 	let id = event.target.id.substring(4);
 	if(id == beers.currentBeer) {
-		beers.amount[beers.currentBeer] ^= 1;
+		beers.amount[id] ^= 1;
+		document.getElementById("cart_note").textContent = getCartNoteText(id, beers.amount[id]);
+		animateCartNote();
 	}
 	else if(id == beers.currentBeer - 1) {
 		rotateBeer(true);
 	}
 	else if(id == beers.currentBeer + 1) {
 		rotateBeer(false);
+	}
+}
+function animateCartNote() {
+	cart = document.getElementById("cart_note");
+	clearTimeout(cartpid);
+	cart.classList.remove("cart_animation");
+	setTimeout(() => {cart.classList.add("cart_animation")}, 50);
+	cartpid = setTimeout(() => {cart.classList.remove("cart_animation")}, 4050);
+}
+function getCartNoteText(idx, amount) {
+	if(amount === 1) {
+		return "selected " + beers.name[idx];
+	}
+	else {
+		return "unselected " + beers.name[idx];
 	}
 }
 
@@ -112,12 +141,12 @@ function resizeEvent() {
 	let w = window.innerWidth;
 	for(let i=0; i<7; i++) {
 		//image will always in the center
-		beers.style[i].left = w/2 - 100 + 'px';
+		beers.style[i].left = w/2 - 100 + "px";
 	}
 }
 function loadrotate() {
 	for(let i=0; i<7; i++) {
-		beers.id[i].classList.add('beerdynamic');
+		beers.id[i].classList.add("beerdynamic");
 	}
 	beers.currentBeer = 3;
 	updateBeer();
