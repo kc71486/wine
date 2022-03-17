@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+	</head>
+	<style>
+	#nothingText {
+		text-align: center;
+	}
+	</style>
+	<body>
+	<script>
+	var clickcount = 0;
+	function changetext() {
+		console.log("triggered");
+		clickcount += 1;
+		let nothing = document.getElementById("nothingText");
+		if(clickcount == 1) {
+			nothing.innerHTML = "\n\t\tThere are literally nothing here.\n\t";
+		}
+		if(clickcount == 2) {
+			nothing.innerHTML = "\n\t\tThere are literally NOTHING here.\n\t";
+		}
+		else if(clickcount == 3) {
+			nothing.innerHTML = "\n\t\t404 Not Found\n\t";
+		}
+		else if(clickcount >= 4) {
+			nothing.innerHTML = "\n\t\t<a href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\">Okay, fine.</a>\n\t";
+		}
+	}
+	</script>
+	<h1 id="nothingText" onclick="changetext()">
+		404 Not Found
+	</h1>
+	</body>
+</html>
