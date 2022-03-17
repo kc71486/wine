@@ -1,153 +1,53 @@
-function rotateBeer(left) {
-	if(left) {
-		if(beers.currentBeer <= 0)
-			return;
-		beers.currentBeer -= 1;
-	}
-	else {
-		if(beers.currentBeer >= 6)
-			return;
-		beers.currentBeer += 1;
-	}
-	updateBeer();
-}
-function updateBeer() {
-	//lag friendly 2 fps
-	if(Math.abs(beers.currentBeer - beers.currentPosFrame) < 0.05) {
-		beers.currentPosFrame = beers.currentBeer;
-	}
-	else if(beers.currentBeer > beers.currentPosFrame)
-		beers.currentPosFrame += 0.5;
-	else if(beers.currentBeer < beers.currentPosFrame)
-		beers.currentPosFrame -= 0.5;
-	for(let i=0; i<7; i++) {
-		let pos = i - beers.currentPosFrame;
-		let rot = 10 * pos;
-		let tranx = 140 * pos;
-		let trany = 8 * pos*pos;
-		//translate xy before rotate or it will screw the positioning
-		beers.style[i].transform = "translateX(" + tranx +"%) translateY(" + trany +"%) rotate(" + rot + "deg) ";
-		if(pos>=-1 && pos<=1) {
-			beers.id[i].classList.add("beercenter");
-			beers.id[i].classList.remove("beeroffcenter");
-		}
-		else {
-			beers.id[i].classList.add("beeroffcenter");
-			beers.id[i].classList.remove("beercenter");
-		}
-	}
-	if(beers.currentBeer == beers.currentPosFrame)
-		return;
-	else
-		setTimeout(updateBeer, 250);
-}
-
-function scrollMenu(scrollin) {
-	let menu = document.getElementById("menu").style;
-	let screenmask = document.getElementById("screen_mask").style;
-	if(scrollin) {
-		trans = "translateX(0%)";
-		screenmask.opacity = "0.5";
-		screenmask.zIndex = "5";
-	}
-	else {
-		trans = "translateX(-100%)";
-		screenmask.opacity = "0";
-		screenmask.zIndex = "-40";
-	}
-	menu.transform = trans;
-}
-function scrollCart(scrollin) {
-	let cart = document.getElementById("cart").style;
-	let screenmask = document.getElementById("screen_mask").style;
-	if(scrollin) {
-		trans = "translateX(0%)";
-		screenmask.opacity = "0.5";
-		screenmask.zIndex = "1";
-	}
-	else {
-		trans = "translateX(100%)";
-		screenmask.opacity = "0";
-		screenmask.zIndex = "-40";
-	}
-	cart.transform = trans;
-	document.getElementById("totalmoney").textContent = calcmoney();
-	document.getElementById("ownedbeer").textContent = getOwnedBeer();
-}
-function calcmoney() {
-	let money = 0;
-	for(let i=0; i<7; i++) {
-		money += beers.amount[i] * beers.prize[i];
-	}
-	return money;
-}
-function getOwnedBeer() {
-	let beertext = "you have:";
-	for(let i=0; i<7; i++) {
-		if(beers.amount[i]) {
-			beertext += "beer#" + i + ", ";
-		}
-	}
-	if(beertext === "you have:") {
-		beertext = "your cart is empty."
-	}
-	return beertext;
-}
-
-function clickmask() {
-	scrollMenu(false);
-	scrollCart(false);
-}
-
-function clickbeer(event) {
-	let id = event.target.id.substring(4);
-	if(id == beers.currentBeer) {
-		beers.amount[id] ^= 1;
-		document.getElementById("cart_note").textContent = getCartNoteText(id, beers.amount[id]);
-		animateCartNote();
-	}
-	else if(id == beers.currentBeer - 1) {
-		rotateBeer(true);
-	}
-	else if(id == beers.currentBeer + 1) {
-		rotateBeer(false);
-	}
-}
-function animateCartNote() {
-	cart = document.getElementById("cart_note");
-	clearTimeout(cartpid);
-	cart.classList.remove("cart_animation");
-	setTimeout(() => {cart.classList.add("cart_animation")}, 50);
-	cartpid = setTimeout(() => {cart.classList.remove("cart_animation")}, 4050);
-}
-function getCartNoteText(idx, amount) {
-	if(amount === 1) {
-		return "selected " + beers.name[idx];
-	}
-	else {
-		return "unselected " + beers.name[idx];
-	}
-}
-
-function loadEvent() {
-	resizeEvent();
-	updateBeer();
-	for(let i=0; i<7; i++) {
-		beers.id[i].addEventListener("click", clickbeer);
-	}
-	setTimeout("loadrotate()", 100);
-}
-function resizeEvent() {
-	let w = window.innerWidth;
-	for(let i=0; i<7; i++) {
-		//image will always in the center
-		beers.style[i].left = w/2 - 100 + "px";
-	}
-}
-function loadrotate() {
-	for(let i=0; i<7; i++) {
-		beers.id[i].classList.add("beerdynamic");
-	}
-	beers.currentBeer = 3;
-	updateBeer();
-}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<link rel="stylesheet" type="text/css" href="./winestyle.css">
+		<link rel="icon" href="resource/beericon.ico" type="image/x-icon">
+		<title>wine</title>
+	</head>
+	<body class="body" onload="loadEvent()" onresize="resizeEvent()">
+		<div id="topmargin"></div>
+		<div id="hangar">hangar24</div>
+		<div id="menuword" class="sideword" onclick="scrollMenu(true)">= menu</div>
+		<div id="menu" class="side_area">
+			<span class="scrolled_title"><u>menu</u></span>
+			<span><a href="nothing.html" class="scrolled_content" target="_blank" title="about this site">about</a></span>
+			<span><a href="nothing.html" class="scrolled_content" target="_blank" title="all products">product</a></span>
+			<span><a href="nothing.html" class="scrolled_content" target="_blank" title="contact us">contact</a></span>
+			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)">
+		</div>
+		<div id="cartword" class="sideword" onclick="scrollCart(true)">cart</div>
+		<div id="cart" class="side_area">
+			<span class="scrolled_title"><u>cart</u></span>
+			<span class="scrolled_content">
+				<span id="ownedbeer">your cart is empty</span>
+			</span>
+			<p class="scrolled_content">total money:
+				<span id="totalmoney">0</span>
+			</p>
+			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)">
+		</div>
+		<span id="cart_note" class="cart_notification">###</span>
+		<span id="screen_mask" onclick="clickmask()"></span>
+		<span class="arrow_left">
+			<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow" onclick="rotateBeer(true)">
+			<image id="arrow_left_yellow" src="./resource/arrow-yellow.png" alt="left arrow on hover" onclick="rotateBeer(true)">
+		</span>
+		<span class="arrow_right">
+			<image id="arrow_right_black" src="./resource/arrow-black.png" alt="right arrow" onclick="rotateBeer(true)">
+			<image id="arrow_right_yellow" src="./resource/arrow-yellow.png" alt="right arrow on hover" onclick="rotateBeer(false)">
+		</span>
+		<image id="beer0" class="beer beeroffcenter" src="resource/beer0.png" style="width:200px; height:400px;" alt="beer#0">
+		<image id="beer1" class="beer beeroffcenter" src="resource/beer1.png" style="width:200px; height:400px;" alt="beer#1">
+		<image id="beer2" class="beer beeroffcenter" src="resource/beer2.png" style="width:200px; height:400px;" alt="beer#2">
+		<image id="beer3" class="beer beeroffcenter" src="resource/beer3.png" style="width:200px; height:400px;" alt="beer#3">
+		<image id="beer4" class="beer beeroffcenter" src="resource/beer4.png" style="width:200px; height:400px;" alt="beer#4">
+		<image id="beer5" class="beer beeroffcenter" src="resource/beer5.png" style="width:200px; height:400px;" alt="beer#5">
+		<image id="beer6" class="beer beeroffcenter" src="resource/beer6.png" style="width:200px; height:400px;" alt="beer#6">
+		<script type="text/javascript" src="./global.js"></script>
+		<script type="text/javascript" src="./main.js"></script>
+		<noscript>Please enable javascript or picture will not be aligned.</noscript>
+	</body>
+</html>
