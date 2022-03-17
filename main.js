@@ -1,30 +1,42 @@
 var currentBeer = 0;
-const rotatedeg = [-48, -23, -11, 0, 11, 23, 48];
-const transxdist = [-32, -24, -11, 0, 11, 24, 32];
-const transydist = [-40, -12, -3, 0, -3, -12, -40];
+var selected = [0, 0, 0, 0, 0, 0, 0];
 
-function rotateWine(left) {
-	wine = document.getElementById("wine").style;
+function rotateBeer(left) {
 	if(left) {
-		if(currentBeer >= 3)
+		if(currentBeer >= 6)
 			return;
 		currentBeer += 1;
 	}
 	else {
-		if(currentBeer <= -3)
+		if(currentBeer <= 0)
 			return;
 		currentBeer -= 1;
 	}
-	
-	rot = rotatedeg[currentBeer+3];
-	tranx = transxdist[currentBeer+3];
-	trany = transydist[currentBeer+3];
-	wine.transform = 'rotate(' + rot + 'deg) translateX(' + tranx +'%) translateY(' + trany +'%)';
+	updateBeer();
+}
+function updateBeer() {
+	let beer = [];
+	for(let i=0; i<7; i++) {
+		beer[i] = document.getElementById('beer'+i).style;
+	}
+	for(let i=0; i<7; i++) {
+		let pos = i+currentBeer-6;
+		let rot = 10*pos;
+		let tranx = 125*pos;
+		let trany = 6*pos*pos;
+		beer[i].transform = 'rotate(' + rot + 'deg) translateX(' + tranx +'%) translateY(' + trany +'%)';
+		if(pos>=-1 && pos<=1) {
+			beer[i].opacity = '1';
+		}
+		else {
+			beer[i].opacity = '0.5';
+		}
+	}
 }
 
 function scrollMenu(scrollin) {
-	menu = document.getElementById("menu").style;
-	screenmask = document.getElementById("screen_mask").style;
+	let menu = document.getElementById("menu").style;
+	let screenmask = document.getElementById("screen_mask").style;
 	if(scrollin) {
 		trans = "translateX(0%)";
 		screenmask.opacity = "0.5";
@@ -38,8 +50,8 @@ function scrollMenu(scrollin) {
 	menu.transform = trans;
 }
 function scrollCart(scrollin) {
-	cart = document.getElementById("cart").style;
-	screenmask = document.getElementById("screen_mask").style;
+	let cart = document.getElementById("cart").style;
+	let screenmask = document.getElementById("screen_mask").style;
 	if(scrollin) {
 		trans = "translateX(0%)";
 		screenmask.opacity = "0.5";
@@ -51,8 +63,42 @@ function scrollCart(scrollin) {
 		screenmask.zIndex = "-2";
 	}
 	cart.transform = trans;
+	document.getElementById("totalmoney").textContent = calcmoney();
+	document.getElementById("ownedbeer").textContent = getOwnedBeer();
 }
+function calcmoney() {
+	let money = selected[0]
+				+selected[1]*2
+				+selected[2]*4
+				+selected[3]*8
+				+selected[4]*16
+				+selected[5]*32
+				+selected[6]*64;
+	return money;
+}
+function getOwnedBeer() {
+	let beers = "you have:";
+	for(let i=0; i<7; i++) {
+		if(selected[i]) {
+			beers += "beer#" + i + ", ";
+		}
+	}
+	if(beers == "you have:") {
+		beers = "your cart is empty."
+	}
+	return beers;
+}
+
 function clickmask() {
 	scrollMenu(false);
 	scrollCart(false);
+}
+
+function clickcenter() {
+	selected[currentBeer] ^= 1;
+}
+
+function loadevent() {
+	currentBeer = 3;
+	updateBeer();
 }
