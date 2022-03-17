@@ -26,6 +26,8 @@
 	position: absolute;
 	width: 100%;
 	top: 20%;
+	opacity: 0;
+	transition: 1s ease;
 }
 .sideword {
 	max-width: 300px;
@@ -35,12 +37,12 @@
 	color: #000000;
 	cursor: pointer;
 }
-#munuword {
+#menuword {
 	position: absolute;
 	top: 10%;
 	right: 85%;
 }
-#munuword:hover {
+#menuword:hover {
 	color: #f5e0a0;
 }
 #cartword {
@@ -136,10 +138,10 @@
 .arrow_left {
 	position: absolute;
 	top: 55%;
-	right: 87%;
+	right: 85%;
 	width: 80px;
     height: 40px;
-	transform: rotate(180deg);
+	transform: rotate(170deg);
 	cursor: pointer;
 }
 #arrow_left_black {
@@ -170,10 +172,10 @@
 .arrow_right {
 	position: absolute;
 	top: 55%;
-	left: 87%;
+	left: 85%;
 	width: 80px;
     height: 40px;
-	transform: rotate(10deg);
+	transform: rotate(20deg);
 	cursor: pointer;
 }
 #arrow_right_black {
@@ -211,8 +213,6 @@
 	position: absolute;
 	top: 35%;
 	z-index: -10;
-	width: 200px;
-	height: 400px;
 }
 .beerdynamic {
 	transition: 0.25s linear;
@@ -224,4 +224,4 @@
 .beeroffcenter {
 	cursor: initial;
 	opacity: 0.5;
-}	
+}
