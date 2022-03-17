@@ -135,13 +135,16 @@ function loadEvent() {
 	for(let i=0; i<7; i++) {
 		beers.id[i].addEventListener("click", clickbeer);
 	}
-	setTimeout("loadrotate()", 100);
+	setTimeout(() => {document.getElementById("hangar").style.opacity = 1;}, 100);
+	setTimeout("loadrotate()", 1100);
 }
 function resizeEvent() {
 	let w = window.innerWidth;
 	for(let i=0; i<7; i++) {
 		//image will always in the center
-		beers.style[i].left = w/2 - 100 + "px";
+		beers.style[i].left = w/2 - Math.floor(w/300)*25 + "px";
+		beers.style[i].width = Math.floor(w/300)*50 + "px";
+		beers.style[i].height = Math.floor(w/300)*100 + "px";
 	}
 }
 function loadrotate() {
