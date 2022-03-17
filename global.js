@@ -17,7 +17,18 @@ var beers = {
 		document.getElementById('beer5').style,
 		document.getElementById('beer6').style
 	],
+	name: [
+		'beer#0',
+		'beer#1',
+		'beer#2',
+		'beer#3',
+		'beer#4',
+		'beer#5',
+		'beer#6'
+	],
 	currentBeer: 6,
+	currentPosFrame: 6,
 	amount: [0, 0, 0, 0, 0, 0, 0],
 	prize: [100, 150, 200, 300, 250, 400, 100]
-}
+};
+var cartpid = -1;
