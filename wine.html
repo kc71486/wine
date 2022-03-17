@@ -6,38 +6,45 @@
 		<link rel="stylesheet" type="text/css" href="./winestyle.css">
 		<title>wine</title>
 	</head>
-	<body class="body">
-		<script type="text/javascript" src="./main.js"></script>
+	<body class="body" onload="loadevent()">
 		<div id="topmargin"></div>
 		<div id="hangar">hangar24</div>
 		<div id="munuword" class="sideword" onclick="scrollMenu(true)">= menu</div>
 		<div id="menu" class="side_area">
-			<div class="scrolled_title"><u>menu</u></div>
-			<a href="#" class="scrolled_content" title="about this site">about</a>
-			<a href="#" class="scrolled_content" title="all products">product</a>
-			<a href="#" class="scrolled_content" title="contact us">contact</a>
-			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)"></image>
+			<span class="scrolled_title"><u>menu</u></span>
+			<span><a href="#" class="scrolled_content" title="about this site">about</a></span>
+			<span><a href="#" class="scrolled_content" title="all products">product</a></span>
+			<span><a href="#" class="scrolled_content" title="contact us">contact</a></span>
+			<image id="menu_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollMenu(false)">
 		</div>
 		<div id="cartword" class="sideword" onclick="scrollCart(true)">cart</div>
 		<div id="cart" class="side_area">
-			<div class="scrolled_title"><u>cart</u></div>
-			<div class="scrolled_content">your cart is empty</div>
-			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)"></image>
+			<span class="scrolled_title"><u>cart</u></span>
+			<span class="scrolled_content">
+				<span id="ownedbeer">your cart is empty</span>
+			</span>
+			<span class="scrolled_content">total money:
+				<span id="totalmoney">0</span>
+			</span>
+			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)">
 		</div>
 		<div id="screen_mask" onclick="clickmask()"></div>
-		<div>
-			<div class="arrow_left">
-				<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow"></image>
-				<image id="arrow_left_yellow" src="./resource/arrow-yellow.png" alt="left arrow on hover" onclick="rotateWine(true)"></image>
-			</div>
-			<div class="arrow_right">
-				<image id="arrow_right_black" src="./resource/arrow-black.png" alt="right arrow"></image>
-				<image id="arrow_right_yellow" src="./resource/arrow-yellow.png" alt="right arrow on hover" onclick="rotateWine(false)"></image>
-			</div>
+		<div class="arrow_left">
+			<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow" onclick="rotateBeer(true)">
+			<image id="arrow_left_yellow" src="./resource/arrow-yellow.png" alt="left arrow on hover" onclick="rotateBeer(true)">
 		</div>
-		<div>
-			<image id="wine" src="./resource/beer.jpg" alt="beer"></image>
-			<div id="choose_area"></div>
+		<div class="arrow_right">
+			<image id="arrow_right_black" src="./resource/arrow-black.png" alt="right arrow" onclick="rotateBeer(true)">
+			<image id="arrow_right_yellow" src="./resource/arrow-yellow.png" alt="right arrow on hover" onclick="rotateBeer(false)">
 		</div>
+		<image id="beer0" class="beer" src="resource/beer0.png" alt="beer#0">
+		<image id="beer1" class="beer" src="resource/beer1.png" alt="beer#1">
+		<image id="beer2" class="beer" src="resource/beer2.png" alt="beer#2">
+		<image id="beer3" class="beer" src="resource/beer3.png" alt="beer#3">
+		<image id="beer4" class="beer" src="resource/beer4.png" alt="beer#4">
+		<image id="beer5" class="beer" src="resource/beer5.png" alt="beer#5">
+		<image id="beer6" class="beer" src="resource/beer6.png" alt="beer#6">
+		<span id="choose_area" onclick="clickcenter()"></span>
+		<script type="text/javascript" src="./main.js"></script>
 	</body>
 </html>
