@@ -1,35 +1,31 @@
-var currentBeer = 0;
-var selected = [0, 0, 0, 0, 0, 0, 0];
-
 function rotateBeer(left) {
 	if(left) {
-		if(currentBeer >= 6)
+		if(beers.currentBeer <= 0)
 			return;
-		currentBeer += 1;
+		beers.currentBeer -= 1;
 	}
 	else {
-		if(currentBeer <= 0)
+		if(beers.currentBeer >= 6)
 			return;
-		currentBeer -= 1;
+		beers.currentBeer += 1;
 	}
 	updateBeer();
 }
 function updateBeer() {
-	let beer = [];
 	for(let i=0; i<7; i++) {
-		beer[i] = document.getElementById('beer'+i).style;
-	}
-	for(let i=0; i<7; i++) {
-		let pos = i+currentBeer-6;
-		let rot = 10*pos;
-		let tranx = 125*pos;
-		let trany = 6*pos*pos;
-		beer[i].transform = 'rotate(' + rot + 'deg) translateX(' + tranx +'%) translateY(' + trany +'%)';
+		let pos = i - beers.currentBeer;
+		let rot = 10 * pos;
+		let tranx = 140 * pos;
+		let trany = 8 * pos*pos;
+		//translate xy before rotate or it will screw the positioning
+		beers.style[i].transform = 'translateX(' + tranx +'%) translateY(' + trany +'%) rotate(' + rot + 'deg) ';
 		if(pos>=-1 && pos<=1) {
-			beer[i].opacity = '1';
+			beers.id[i].classList.add('beercenter');
+			beers.id[i].classList.remove('beeroffcenter');
 		}
 		else {
-			beer[i].opacity = '0.5';
+			beers.id[i].classList.add('beeroffcenter');
+			beers.id[i].classList.remove('beercenter');
 		}
 	}
 }
@@ -45,7 +41,7 @@ function scrollMenu(scrollin) {
 	else {
 		trans = "translateX(-100%)";
 		screenmask.opacity = "0";
-		screenmask.zIndex = "-2";
+		screenmask.zIndex = "-40";
 	}
 	menu.transform = trans;
 }
@@ -60,33 +56,30 @@ function scrollCart(scrollin) {
 	else {
 		trans = "translateX(100%)";
 		screenmask.opacity = "0";
-		screenmask.zIndex = "-2";
+		screenmask.zIndex = "-40";
 	}
 	cart.transform = trans;
 	document.getElementById("totalmoney").textContent = calcmoney();
 	document.getElementById("ownedbeer").textContent = getOwnedBeer();
 }
 function calcmoney() {
-	let money = selected[0]
-				+selected[1]*2
-				+selected[2]*4
-				+selected[3]*8
-				+selected[4]*16
-				+selected[5]*32
-				+selected[6]*64;
+	let money = 0;
+	for(let i=0; i<7; i++) {
+		money += beers.amount[i] * beers.prize[i];
+	}
 	return money;
 }
 function getOwnedBeer() {
-	let beers = "you have:";
+	let beertext = "you have:";
 	for(let i=0; i<7; i++) {
-		if(selected[i]) {
-			beers += "beer#" + i + ", ";
+		if(beers.amount[i]) {
+			beertext += "beer#" + i + ", ";
 		}
 	}
-	if(beers == "you have:") {
-		beers = "your cart is empty."
+	if(beertext === "you have:") {
+		beertext = "your cart is empty."
 	}
-	return beers;
+	return beertext;
 }
 
 function clickmask() {
@@ -94,11 +87,38 @@ function clickmask() {
 	scrollCart(false);
 }
 
-function clickcenter() {
-	selected[currentBeer] ^= 1;
+function clickbeer(event) {
+	let id = event.target.id.substring(4);
+	if(id == beers.currentBeer) {
+		beers.amount[beers.currentBeer] ^= 1;
+	}
+	else if(id == beers.currentBeer - 1) {
+		rotateBeer(true);
+	}
+	else if(id == beers.currentBeer + 1) {
+		rotateBeer(false);
+	}
 }
 
-function loadevent() {
-	currentBeer = 3;
+function loadEvent() {
+	resizeEvent();
+	updateBeer();
+	for(let i=0; i<7; i++) {
+		beers.id[i].addEventListener("click", clickbeer);
+	}
+	setTimeout("loadrotate()", 100);
+}
+function resizeEvent() {
+	let w = window.innerWidth;
+	for(let i=0; i<7; i++) {
+		//image will always in the center
+		beers.style[i].left = w/2 - 100 + 'px';
+	}
+}
+function loadrotate() {
+	for(let i=0; i<7; i++) {
+		beers.id[i].classList.add('beerdynamic');
+	}
+	beers.currentBeer = 3;
 	updateBeer();
 }
