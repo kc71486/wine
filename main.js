@@ -136,7 +136,7 @@ function loadEvent() {
 		beers.id[i].addEventListener("click", clickbeer);
 	}
 	setTimeout(() => {document.getElementById("hangar").style.opacity = 1;}, 100);
-	setTimeout("loadrotate()", 1100);
+	setTimeout(loadrotate, 1100);
 }
 function resizeEvent() {
 	let w = window.innerWidth;
