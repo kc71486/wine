@@ -178,16 +178,42 @@
   opacity: 1;
 }
 
-#wine {
+.beer {
 	position: absolute;
-	top: 40%;
-	left: -20%;
-	width: 140%;
-	height: 140%;
-	transform: rotate(0deg);
-	transition: .5s;
+	top: 35%;
+	left: 40%;
+	width: 200px;
+	height: 400px;
+	transition: 0.8s ease;
 	z-index: -1;
 }
+
+#beer0 {
+	transform:rotate(0deg) translateX(0%) translateY(0%);
+	opacity:0.5;
+}	
+#beer1 {
+	transform:rotate(10deg) translateX(125%) translateY(6%);
+	opacity:0.5;
+}
+#beer2 {
+	transform:rotate(20deg) translateX(250%) translateY(24%);
+}
+#beer3 {
+	transform:rotate(30deg) translateX(375%) translateY(54%);
+}
+#beer4 {
+	transform:rotate(40deg) translateX(500%) translateY(96%);
+}
+#beer5 {
+	transform:rotate(50deg) translateX(625%) translateY(150%);
+	opacity:0.5;
+}
+#beer6 {
+	transform:rotate(60deg) translateX(750%) translateY(54%);
+	opacity:0.5;
+}
+
 #choose_area {
 	position: absolute;
 	top: 40%;
