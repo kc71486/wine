@@ -24,20 +24,21 @@
 			<span class="scrolled_content">
 				<span id="ownedbeer">your cart is empty</span>
 			</span>
-			<span class="scrolled_content">total money:
+			<p class="scrolled_content">total money:
 				<span id="totalmoney">0</span>
-			</span>
+			</p>
 			<image id="cart_cross" class="cross" src="./resource/x.png" alt="cross for menu" onclick="scrollCart(false)">
 		</div>
-		<div id="screen_mask" onclick="clickmask()"></div>
-		<div class="arrow_left">
+		<span id="cart_note" class="cart_notification">###</span>
+		<span id="screen_mask" onclick="clickmask()"></span>
+		<span class="arrow_left">
 			<image id="arrow_left_black" src="./resource/arrow-black.png" alt="left arrow" onclick="rotateBeer(true)">
 			<image id="arrow_left_yellow" src="./resource/arrow-yellow.png" alt="left arrow on hover" onclick="rotateBeer(true)">
-		</div>
-		<div class="arrow_right">
+		</span>
+		<span class="arrow_right">
 			<image id="arrow_right_black" src="./resource/arrow-black.png" alt="right arrow" onclick="rotateBeer(true)">
 			<image id="arrow_right_yellow" src="./resource/arrow-yellow.png" alt="right arrow on hover" onclick="rotateBeer(false)">
-		</div>
+		</span>
 		<image id="beer0" class="beer beeroffcenter" src="resource/beer0.png" alt="beer#0">
 		<image id="beer1" class="beer beeroffcenter" src="resource/beer1.png" alt="beer#1">
 		<image id="beer2" class="beer beeroffcenter" src="resource/beer2.png" alt="beer#2">
@@ -47,5 +48,6 @@
 		<image id="beer6" class="beer beeroffcenter" src="resource/beer6.png" alt="beer#6">
 		<script type="text/javascript" src="./global.js"></script>
 		<script type="text/javascript" src="./main.js"></script>
+		<noscript>Please enable javascript or picture will not be aligned.</noscript>
 	</body>
 </html>

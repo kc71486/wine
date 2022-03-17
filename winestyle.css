@@ -60,7 +60,7 @@
 	opacity: 1;
 	display: flex;
 	flex-direction: column;
-	z-index: 2;
+	z-index: 10;
 }
 #menu {
 	position: absolute;
@@ -81,6 +81,29 @@
 }
 .scrolled_content {
 	color: #ffffff;
+}
+
+@keyframes fadeInOut {
+	0%   {opacity: 0;top: 23%;}
+	20%  {opacity: 1;top: 20%;}
+	80%  {opacity: 1;top: 20%;}
+	100% {opacity: 0;top: 17%;}
+}
+.cart_notification {
+	position: absolute;
+	right: 0%;
+	top: 20%;
+	padding: 8px 10px 8px 10px;
+	font-size: 24px;
+	color: #ffffff;
+	background-color: #ff8800;
+	border-radius: 12px;
+	opacity: 0;
+	z-index: 2;
+}
+.cart_animation {
+	animation-name: fadeInOut;
+	animation-duration: 4s;
 }
 
 #screen_mask {
@@ -192,7 +215,7 @@
 	height: 400px;
 }
 .beerdynamic {
-	transition: 0.8s ease;
+	transition: 0.25s linear;
 }
 .beercenter {
 	cursor: pointer;
