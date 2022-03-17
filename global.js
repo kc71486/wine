@@ -26,8 +26,8 @@ var beers = {
 		'beer#5',
 		'beer#6'
 	],
-	currentBeer: 6,
-	currentPosFrame: 6,
+	currentBeer: 8,
+	currentPosFrame: 8,
 	amount: [0, 0, 0, 0, 0, 0, 0],
 	prize: [100, 150, 200, 300, 250, 400, 100]
 };
